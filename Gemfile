@@ -31,6 +31,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'annotate'
 gem 'enumerize'
+gem 'devise'
+gem "twitter-bootstrap-rails"
+gem 'simple_form'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
