@@ -11,6 +11,7 @@
 #  times_to_pay :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  pay_date     :date
 #
 # Indexes
 #
@@ -31,7 +32,12 @@ class Payment < ActiveRecord::Base
   validates_presence_of :title 
   validates_presence_of :value 
   validates_presence_of :status 
+  validates_presence_of :pay_date, if: :status? 
   validates :times_to_pay, length: { maximum: 12 }
   
+  
+  def status?
+    status == "a_vencer"
+  end
   
 end

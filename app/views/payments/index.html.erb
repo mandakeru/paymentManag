@@ -5,28 +5,29 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:value) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:times_to_pay) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:pay_date) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @payments.each do |payment| %>
       <tr>
-        <td><%= link_to payment.id, payment_path(payment) %></td>
-        <td><%= payment.title %></td>
+       <% if payment.user_id == current_user.id %>
+       
+    
+      
+        <td><%= link_to payment.title, payment_path(payment) %></td>
         <td><%= payment.description %></td>
         <td><%= payment.value %></td>
-        <td><%= payment.user_id %></td>
         <td><%= payment.status %></td>
         <td><%= payment.times_to_pay %></td>
-        <td><%=l payment.created_at %></td>
+        <td><%= payment.pay_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_payment_path(payment), :class => 'btn btn-default btn-xs' %>
@@ -37,9 +38,12 @@
                       :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>
+      
+      <% end %>
     <% end %>
   </tbody>
 </table>
+Total a pagar:<%= @cont %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_payment_path,

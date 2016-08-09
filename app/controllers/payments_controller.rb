@@ -5,6 +5,13 @@ class PaymentsController < ApplicationController
   # GET /payments.json
   def index
     @payments = Payment.all
+    
+    @cont = "%.2f" % Payment.where(user_id:(current_user.id)).sum(:value)
+    
+    @mesHoje = Date.today.month
+    
+    
+    
   end
 
   # GET /payments/1
@@ -69,6 +76,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:title, :description, :value, :user_id, :status, :times_to_pay)
+      params.require(:payment).permit(:title, :description, :value, :user_id, :status, :times_to_pay, :pay_date)
     end
 end

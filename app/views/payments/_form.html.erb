@@ -42,10 +42,21 @@
   <div class="form-group">
     <label class="control-label col-lg-2" for="payment_title">Status</label>
     <div class="col-lg-10">
-      <%= f.input :status, label: false, input_html: { class: 'form-control' } %>
+      <%= f.input :status, label: false, as: :radio_buttons %>
     </div>
     <%=f.error_span(:status) %>
   </div>
+  
+  <div class="form-group" id="a-vencer">
+    <label class="control-label col-lg-2" for="payment_title">Data de vencimento</label>
+    <div class="col-lg-10">
+      <%= f.input :pay_date, label: false, input_html: { class: 'form-control' } %>
+    </div>
+    <%=f.error_span(:pay_date) %>
+  </div>
+  
+ 
+    
   <div class="form-group">
     <label class="control-label col-lg-2" for="payment_title">Vezes a pagar</label>
     <div class="col-lg-10">
